@@ -1,0 +1,119 @@
+baseURL: "https://mythoshell.com/"
+languageCode: "zh-cn"
+title: "mythoshell"
+theme: "PaperMod"
+
+# GitHub Pages custom domain. Keep this aligned with static/CNAME.
+pagination:
+  pagerSize: 8
+
+enableRobotsTXT: true
+enableGitInfo: true
+
+minify:
+  minifyOutput: true
+
+permalinks:
+  posts: "/posts/:slug/"
+
+outputs:
+  home:
+    - HTML
+    - RSS
+    - JSON
+  section:
+    - HTML
+    - RSS
+  taxonomy:
+    - HTML
+
+sitemap:
+  changefreq: weekly
+  filename: sitemap.xml
+  priority: 0.5
+
+params:
+  env: production
+  description: "A developer's home for ideas, technology and beyond. 记录技术实践，探索架构设计，分享工程经验。"
+  author: "mythoshell"
+  defaultTheme: auto
+  ShowReadingTime: true
+  ShowShareButtons: true
+  ShowPostNavLinks: true
+  ShowBreadCrumbs: true
+  ShowCodeCopyButtons: true
+  ShowWordCount: true
+  ShowRssButtonInSectionTermList: true
+  UseHugoToc: true
+  ShowToc: true
+  TocOpen: false
+  comments: false
+  disableSpecial1stPost: true
+  displayFullLangName: true
+  DateFormat: "2006-01-02"
+  mainSections:
+    - posts
+  assets:
+    favicon: "/brand/favicon.svg"
+    favicon16x16: "/brand/favicon-16x16.png"
+    favicon32x32: "/brand/favicon-32x32.png"
+    apple_touch_icon: "/brand/favicon-180x180.png"
+  label:
+    text: "mythoshell"
+    icon: "/brand/mythoshell-mark.svg"
+    iconHeight: 32
+  homeInfoParams:
+    Title: "Build. Explore. Share."
+    Content: "A developer's home for ideas, technology and beyond."
+  socialIcons:
+    - name: github
+      url: "https://github.com/mythoshell"
+  editPost:
+    URL: "https://github.com/mythoshell/mythoshell-blog/tree/main/content"
+    Text: "Suggest Changes"
+    appendFilePath: true
+  cover:
+    linkFullImages: true
+  fuseOpts:
+    isCaseSensitive: false
+    shouldSort: true
+    location: 0
+    distance: 1000
+    threshold: 0.4
+    minMatchCharLength: 0
+    keys:
+      - title
+      - permalink
+      - summary
+      - content
+
+menu:
+  main:
+    - identifier: home
+      name: Home
+      url: /
+      weight: 5
+    - identifier: posts
+      name: Posts
+      url: /posts/
+      weight: 10
+    - identifier: archives
+      name: Archives
+      url: /archives/
+      weight: 20
+    - identifier: tags
+      name: Tags
+      url: /tags/
+      weight: 30
+    - identifier: search
+      name: Search
+      url: /search/
+      weight: 35
+    - identifier: about
+      name: About
+      url: /about/
+      weight: 40
+
+taxonomies:
+  category: categories
+  tag: tags
