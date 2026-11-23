@@ -1,16 +1,17 @@
 {{ define "main" }}
 <main class="ms-home">
-  <section class="ms-hero">
-    <div class="ms-hero-glow"></div>
+  {{/* Brand hero: intentionally preserves the live site's current visual language. */}}
+  <section class="ms-hero" aria-labelledby="ms-hero-title">
+    <div class="ms-hero-glow" aria-hidden="true"></div>
     <div class="ms-hero-top">
       <a class="ms-brand" href="{{ "" | relLangURL }}" aria-label="mythoshell home">
-        <img src="{{ "brand/mythoshell-logo-dark.svg" | relURL }}" alt="mythoshell" />
+        <img src="{{ "brand/mythoshell-logo-dark.svg" | relURL }}" alt="mythoshell" width="250" height="80" />
       </a>
-      <span class="ms-hero-kicker">A DEVELOPER'S HOME FOR IDEAS, TECHNOLOGY AND BEYOND.</span>
+      <span class="ms-hero-kicker">A DEVELOPER'S HOME FOR IDEAS,<br/> TECHNOLOGY AND BEYOND.</span>
     </div>
     <div class="ms-hero-copy">
       <p class="ms-eyebrow"><span></span> BUILD · EXPLORE · SHARE</p>
-      <h1>Build. Explore. Share.</h1>
+      <h1 id="ms-hero-title">Build. Explore. Share.</h1>
       <p class="ms-hero-subtitle">A developer's home for ideas, technology and beyond.</p>
       <p class="ms-hero-description">记录技术实践，探索架构设计，分享工程经验。</p>
       <div class="ms-hero-actions">
@@ -21,26 +22,67 @@
     <div class="ms-hero-bottom"><span>JAVA · ARCHITECTURE · AI AGENT</span><span>EST. 2026</span></div>
   </section>
 
-  <section class="ms-section ms-domains">
-    <div class="ms-section-heading"><div><p class="ms-eyebrow">01 / WHAT I EXPLORE</p><h2>Technical Domains</h2></div><p>从底层原理到工程实践<br/>持续构建自己的知识体系。</p></div>
+  <section class="ms-section ms-domains" aria-labelledby="ms-domains-title">
+    <div class="ms-section-heading">
+      <div><p class="ms-eyebrow">01 / WHAT I EXPLORE</p><h2 id="ms-domains-title">Technical Domains</h2></div>
+      <p>从底层原理到工程实践<br/>持续构建自己的知识体系。</p>
+    </div>
+    {{ $domains := site.Params.technicalDomains }}
+
     <div class="ms-domain-grid">
-      <a class="ms-domain-card" href="{{ "categories/java/" | relURL }}"><span class="ms-domain-number">01</span><span class="ms-domain-icon">{ }</span><h3>Java & JVM</h3><p>Java 基础、并发编程、JVM 与性能调优</p><span class="ms-card-arrow">↗</span></a>
-      <a class="ms-domain-card" href="{{ "categories/architecture/" | relURL }}"><span class="ms-domain-number">02</span><span class="ms-domain-icon">⌘</span><h3>Architecture</h3><p>微服务、分布式系统、架构设计与演进</p><span class="ms-card-arrow">↗</span></a>
-      <a class="ms-domain-card" href="{{ "categories/middleware/" | relURL }}"><span class="ms-domain-number">03</span><span class="ms-domain-icon">◈</span><h3>Middleware</h3><p>MySQL、Redis、Kafka、Nacos 与中间件</p><span class="ms-card-arrow">↗</span></a>
-      <a class="ms-domain-card" href="{{ "categories/ai-agent/" | relURL }}"><span class="ms-domain-number">04</span><span class="ms-domain-icon">✳</span><h3>AI & Agent</h3><p>LLM、RAG、Agent 应用与 AI 工程化</p><span class="ms-card-arrow">↗</span></a>
+      {{ range $domains }}
+        {{ $name := .name }}
+        {{ $slug := $name | urlize }}
+        {{ $term := index site.Taxonomies.categories $slug }}
+
+        <a class="ms-domain-card" href="{{ printf "/categories/%s/" $slug | relURL }}">
+          <span class="ms-domain-number">
+            {{ .number }} / DOMAIN
+          </span>
+
+          <span class="ms-domain-icon" aria-hidden="true">
+            {{ .icon }}
+          </span>
+
+          <h3>{{ $name }}</h3>
+
+          <p>{{ .description }}</p>
+
+          <span class="ms-domain-foot">
+            <span>{{ len $term }} ARTICLES</span>
+            <span class="ms-card-arrow">↗</span>
+          </span>
+        </a>
+      {{ end }}
     </div>
   </section>
 
-  <section class="ms-section ms-latest">
-    <div class="ms-section-heading"><div><p class="ms-eyebrow">02 / NOTES & KNOWLEDGE</p><h2>Latest Posts</h2></div><a class="ms-text-link" href="{{ "posts/" | relURL }}">All articles <span>→</span></a></div>
+  {{ $posts := where site.RegularPages "Section" "posts" }}
+  {{ $featured := where $posts "Params.featured" true }}
+  {{ with index ($featured.ByDate.Reverse) 0 }}
+  <section class="ms-section ms-featured" aria-labelledby="ms-featured-title">
+    <div class="ms-section-heading"><div><p class="ms-eyebrow">02 / EDITOR'S PICK</p><h2 id="ms-featured-title">Featured Article</h2></div><span class="ms-section-note">值得反复阅读的工程实践</span></div>
+    <article class="ms-featured-card">
+      <div class="ms-featured-mark">FEATURED<br/><span>MYTHOSHELL SELECT</span></div>
+      <div class="ms-featured-content">
+        <div class="ms-post-meta"><span>{{ with .Params.categories }}{{ delimit . " / " }}{{ else }}ENGINEERING{{ end }}</span><time datetime="{{ .Date.Format "2006-01-02" }}">{{ .Date.Format "2006.01.02" }}</time></div>
+        <h3><a href="{{ .RelPermalink }}">{{ .Title }}</a></h3>
+        <p>{{ with .Description }}{{ . }}{{ else }}{{ .Summary | plainify | truncate 180 }}{{ end }}</p>
+        <a class="ms-read-more" href="{{ .RelPermalink }}">Read article <span>↗</span></a>
+      </div>
+    </article>
+  </section>
+  {{ end }}
+
+  <section class="ms-section ms-latest" aria-labelledby="ms-latest-title">
+    <div class="ms-section-heading"><div><p class="ms-eyebrow">03 / NOTES & KNOWLEDGE</p><h2 id="ms-latest-title">Latest Posts</h2></div><a class="ms-text-link" href="{{ "posts/" | relURL }}">All articles <span>→</span></a></div>
     <div class="ms-post-grid">
-      {{ $pages := where site.RegularPages "Section" "posts" }}
-      {{ range first 4 ($pages.ByDate.Reverse) }}
+      {{ range first 6 ($posts.ByDate.Reverse) }}
         <article class="ms-post-card">
-          <div class="ms-post-meta"><span>{{ with .Params.categories }}{{ index . 0 }}{{ else }}ENGINEERING{{ end }}</span><time>{{ .Date.Format "2006.01.02" }}</time></div>
+          <div class="ms-post-meta"><span>{{ with .Params.categories }}{{ index . 0 }}{{ else }}ENGINEERING{{ end }}</span><time datetime="{{ .Date.Format "2006-01-02" }}">{{ .Date.Format "2006.01.02" }}</time></div>
           <h3><a href="{{ .RelPermalink }}">{{ .Title }}</a></h3>
-          <p>{{ with .Description }}{{ . }}{{ else }}{{ .Summary | plainify | truncate 110 }}{{ end }}</p>
-          <a class="ms-read-more" href="{{ .RelPermalink }}">Read article <span>↗</span></a>
+          <p>{{ with .Description }}{{ . }}{{ else }}{{ .Summary | plainify | truncate 115 }}{{ end }}</p>
+          <div class="ms-post-card-bottom"><span>{{ .ReadingTime }} MIN READ</span><a class="ms-read-more" href="{{ .RelPermalink }}">Read article <span>↗</span></a></div>
         </article>
       {{ else }}
         <div class="ms-empty-state"><span>✳</span><h3>Ideas are taking shape.</h3><p>第一篇文章正在路上。这里将持续更新技术实践与思考。</p></div>
@@ -48,10 +90,10 @@
     </div>
   </section>
 
-  <section class="ms-about-strip">
-    <div><p class="ms-eyebrow">03 / BEYOND THE SHELL</p><h2>Stay curious.<br/><span>Keep building.</span></h2><p>技术没有终点，保持好奇，持续探索，把想法变成真实的工程实践。</p></div>
+  <section class="ms-section ms-about-strip">
+    <div class="ms-about-copy"><p class="ms-eyebrow">04 / BEYOND THE SHELL</p><h2>Stay curious.<br/><span>Keep building.</span></h2><p>技术没有终点，保持好奇，持续探索，把想法变成真实的工程实践。</p></div>
     <a class="ms-button ms-button-light" href="{{ "about/" | relURL }}">More about me <span>→</span></a>
-    <div class="ms-orbit ms-orbit-one"></div><div class="ms-orbit ms-orbit-two"></div>
+    <div class="ms-orbit ms-orbit-one" aria-hidden="true"></div><div class="ms-orbit ms-orbit-two" aria-hidden="true"></div>
   </section>
 </main>
 {{ end }}

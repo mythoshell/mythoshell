@@ -1,0 +1,12 @@
+{{ define "main" }}
+<main class="ms-page ms-taxonomy-page">
+  <header class="ms-page-hero ms-taxonomy-hero">
+    <p class="ms-eyebrow">KNOWLEDGE INDEX / {{ upper .Data.Singular }}</p>
+    <h1>{{ .Title }}<span>.</span></h1>
+    <p>{{ if eq .Data.Singular "category" }}Explore articles by technical domain.{{ else }}Explore related notes and ideas.{{ end }}</p>
+    <div class="ms-page-stats"><span>{{ len .Pages }} ARTICLES</span><span><a href="{{ printf "%s/" .Data.Plural | relURL }}">ALL {{ upper .Data.Plural }} ↗</a></span></div>
+  </header>
+  <div class="ms-list-stack">{{ range .Paginator.Pages }}{{ partial "ms/post-card.html" . }}{{ else }}<div class="ms-empty-state"><h3>No articles here yet.</h3><p>这个主题下暂时还没有文章。</p></div>{{ end }}</div>
+  {{ template "_internal/pagination.html" . }}
+</main>
+{{ end }}

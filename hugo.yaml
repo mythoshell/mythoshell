@@ -1,9 +1,10 @@
 baseURL: "https://mythoshell.com/"
 languageCode: "zh-cn"
+defaultContentLanguage: zh
+defaultContentLanguageInSubdir: false
 title: "mythoshell"
 theme: "PaperMod"
 
-# GitHub Pages custom domain. Keep this aligned with static/CNAME.
 pagination:
   pagerSize: 8
 
@@ -17,26 +18,32 @@ permalinks:
   posts: "/posts/:slug/"
 
 outputs:
-  home:
-    - HTML
-    - RSS
-    - JSON
-  section:
-    - HTML
-    - RSS
-  taxonomy:
-    - HTML
+  home: [HTML, RSS, JSON]
+  section: [HTML, RSS]
+  taxonomy: [HTML]
+  term: [HTML]
 
 sitemap:
   changefreq: weekly
   filename: sitemap.xml
   priority: 0.5
 
+markup:
+  tableOfContents:
+    startLevel: 2
+    endLevel: 4
+    ordered: false
+  highlight:
+    lineNos: false
+    noClasses: true
+
 params:
   env: production
+  title: "mythoshell"
   description: "A developer's home for ideas, technology and beyond. 记录技术实践，探索架构设计，分享工程经验。"
   author: "mythoshell"
   defaultTheme: auto
+  disableThemeToggle: false
   ShowReadingTime: true
   ShowShareButtons: true
   ShowPostNavLinks: true
@@ -51,8 +58,7 @@ params:
   disableSpecial1stPost: true
   displayFullLangName: true
   DateFormat: "2006-01-02"
-  mainSections:
-    - posts
+  mainSections: [posts]
   assets:
     favicon: "/brand/favicon.svg"
     favicon16x16: "/brand/favicon-16x16.png"
@@ -62,18 +68,10 @@ params:
     text: "mythoshell"
     icon: "/brand/mythoshell-mark.svg"
     iconHeight: 32
-  homeInfoParams:
-    Title: "Build. Explore. Share."
-    Content: "A developer's home for ideas, technology and beyond."
-  socialIcons:
-    - name: github
-      url: "https://github.com/mythoshell"
-  editPost:
-    URL: "https://github.com/mythoshell/mythoshell-blog/tree/main/content"
-    Text: "Suggest Changes"
-    appendFilePath: true
   cover:
     linkFullImages: true
+    hiddenInList: false
+    hiddenInSingle: false
   fuseOpts:
     isCaseSensitive: false
     shouldSort: true
@@ -81,11 +79,39 @@ params:
     distance: 1000
     threshold: 0.4
     minMatchCharLength: 0
-    keys:
-      - title
-      - permalink
-      - summary
-      - content
+    keys: [title, permalink, summary, content]
+  socialIcons:
+    - name: github
+      url: "https://github.com/mythoshell"
+  editPost:
+    URL: "https://github.com/mythoshell/mythoshell-blog/tree/main/content"
+    Text: "Suggest Changes"
+    appendFilePath: true
+  technicalDomains:
+    - name: "Java & JVM"
+      number: "01"
+      icon: "{ }"
+      description: "Java 基础、并发编程、JVM 原理与性能调优"
+
+    - name: "Architecture"
+      number: "02"
+      icon: "⌘"
+      description: "微服务、分布式系统、架构设计与演进"
+
+    - name: "Middleware"
+      number: "03"
+      icon: "◈"
+      description: "MySQL、Redis、Kafka、Nacos 与中间件"
+
+    - name: "AI & Agent"
+      number: "04"
+      icon: "✳"
+      description: "LLM、RAG、Agent 应用与 AI 工程化"
+
+    - name: "Programming Languages"
+      number: "05"
+      icon: "</>"
+      description: "Python、Go、Rust 及其他编程语言生态"
 
 menu:
   main:
@@ -101,6 +127,10 @@ menu:
       name: Archives
       url: /archives/
       weight: 20
+    - identifier: categories
+      name: Categories
+      url: /categories/
+      weight: 25
     - identifier: tags
       name: Tags
       url: /tags/

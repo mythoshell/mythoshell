@@ -1,25 +1,41 @@
 ---
 title: "About"
 description: "关于 mythoshell 与本站作者。"
+type: about
+layout: single
 ShowToc: false
+ShowReadingTime: false
+comments: false
 ---
 
-# About mythoshell
+## Hello, I'm mythoshell.
 
-**mythoshell** 是一个关于技术、工程实践与持续探索的个人博客。
+欢迎来到 **mythoshell**。这里是一个记录技术实践、探索工程架构、分享开发经验的个人技术空间。
 
-## 技术方向
+我关注后端工程与系统设计，也持续探索 AI 应用开发，希望把日常工作中的问题、解决方案和学习过程沉淀为可复用的知识。
 
-- Java / JVM / Concurrency
-- Spring Boot / Microservices / Distributed Systems
-- MySQL / Redis / Kafka / Nacos
-- LLM / RAG / AI Agent
+## What I work on
 
-## 关于本站
+- **Java & JVM**：Java 基础、并发编程、JVM、性能分析与调优
+- **Architecture**：微服务、分布式系统、系统设计与架构演进
+- **Middleware**：MySQL、Redis、Kafka、Nacos、Sentinel
+- **AI & Agent**：大模型应用、RAG、Agent 工作流与工程化实践
 
-本站使用 Hugo + PaperMod 构建，通过 GitHub Pages 托管，并由 GitHub Actions 自动部署。
+## Engineering mindset
 
-## 联系方式
+我更关注技术在真实业务场景中的落地：问题如何出现、如何定位、方案如何权衡，以及最终如何验证效果。
 
-- GitHub：请替换为你的 GitHub 主页链接。
-- Email：请替换为你愿意公开的联系邮箱。
+这里的文章会尽量保留问题背景、分析过程、关键代码和实践结论，而不只是罗列概念。
+
+## About this site
+
+本站使用 Hugo + PaperMod 构建，托管于 GitHub Pages，并通过 GitHub Actions 自动部署。视觉设计基于 Mythoshell 品牌体系。
+
+## Find me
+
+- GitHub：https://github.com/mythoshell。
+- Email：mythoshell@gmail.com
+
+---
+
+**Build. Explore. Share.**

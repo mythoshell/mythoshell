@@ -1,0 +1,32 @@
+{{ define "main" }}
+<main class="ms-page ms-article-page">
+  <article class="ms-article">
+    {{ partial "ms/breadcrumbs.html" . }}
+    <header class="ms-article-header">
+      {{ with .Params.categories }}<div class="ms-article-category">{{ range . }}<a href="{{ printf "categories/%s/" (. | urlize) | relURL }}">{{ . }}</a>{{ end }}</div>{{ end }}
+      <h1>{{ .Title }}</h1>
+      {{ with .Description }}<p class="ms-article-description">{{ . }}</p>{{ end }}
+      <div class="ms-article-meta">
+        <span>{{ .Date.Format "2006-01-02" }}</span><span>{{ .ReadingTime }} min read</span><span>{{ .WordCount }} words</span>
+        {{ with .Lastmod }}{{ if ne ($.Date.Format "2006-01-02") (.Format "2006-01-02") }}<span>Updated {{ .Format "2006-01-02" }}</span>{{ end }}{{ end }}
+      </div>
+      {{ with .Params.tags }}<div class="ms-article-tags">{{ range . }}<a href="{{ printf "tags/%s/" (. | urlize) | relURL }}">#{{ . }}</a>{{ end }}</div>{{ end }}
+    </header>
+    {{ with .Params.cover.image }}<figure class="ms-article-cover"><img src="{{ . | relURL }}" alt="{{ $.Params.cover.alt | default $.Title }}" loading="eager"/><figcaption>{{ $.Params.cover.caption }}</figcaption></figure>{{ end }}
+    <div class="ms-article-layout">
+      <div class="ms-article-body">
+        {{ if .TableOfContents }}<details class="ms-mobile-toc"><summary>On this page</summary><div>{{ .TableOfContents }}</div></details>{{ end }}
+        <div class="post-content ms-prose">{{ .Content }}</div>
+        <footer class="ms-article-footer">
+          <div class="ms-article-footer-label">THANKS FOR READING</div>
+          <p>Build. Explore. Share.</p>
+          <div class="ms-article-footer-links"><a href="{{ "posts/" | relURL }}">← All posts</a><a href="{{ "about/" | relURL }}">About the author ↗</a></div>
+        </footer>
+        {{ with .PrevInSection }}<a class="ms-prev-next" href="{{ .RelPermalink }}"><span>PREVIOUS ARTICLE</span><strong>← {{ .LinkTitle }}</strong></a>{{ end }}
+        {{ with .NextInSection }}<a class="ms-prev-next" href="{{ .RelPermalink }}"><span>NEXT ARTICLE</span><strong>{{ .LinkTitle }} →</strong></a>{{ end }}
+      </div>
+      {{ if .TableOfContents }}<aside class="ms-toc-sidebar"><div class="ms-toc-sticky"><p>ON THIS PAGE</p>{{ .TableOfContents }}</div></aside>{{ end }}
+    </div>
+  </article>
+</main>
+{{ end }}

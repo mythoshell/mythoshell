@@ -1,0 +1,17 @@
+{{ define "main" }}
+<main class="ms-page ms-archives-page">
+  <header class="ms-page-hero"><p class="ms-eyebrow">A TIMELINE OF IDEAS</p><h1>Archives<span>.</span></h1><p>按时间回顾每一次学习、实践与分享。</p><div class="ms-page-stats"><span>{{ len (where site.RegularPages "Section" "posts") }} ARTICLES</span><span>EST. 2026</span></div></header>
+  <div class="ms-archive-timeline">
+    {{ $posts := where site.RegularPages "Section" "posts" }}
+    {{ range ($posts.GroupByDate "2006") }}
+      <section class="ms-archive-year"><h2>{{ .Key }}<span>{{ len .Pages }} POSTS</span></h2>
+        {{ range (.Pages.GroupByDate "January") }}
+          <div class="ms-archive-month"><h3>{{ .Key }}</h3><div class="ms-archive-items">
+            {{ range .Pages.ByDate.Reverse }}<article class="ms-archive-item"><time datetime="{{ .Date.Format "2006-01-02" }}">{{ .Date.Format "01.02" }}</time><a href="{{ .RelPermalink }}">{{ .LinkTitle }}</a><span>{{ with .Params.categories }}{{ index . 0 }}{{ else }}NOTE{{ end }}</span></article>{{ end }}
+          </div></div>
+        {{ end }}
+      </section>
+    {{ end }}
+  </div>
+</main>
+{{ end }}

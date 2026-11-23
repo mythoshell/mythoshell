@@ -1,4 +1,4 @@
 ---
 title: "Posts"
-description: "技术实践、架构思考与持续学习记录。"
+description: "技术实践、源码分析与工程思考。"
 ---

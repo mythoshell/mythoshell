@@ -1,0 +1,9 @@
+<article class="ms-list-card">
+  <div class="ms-list-card-main">
+    <div class="ms-post-meta"><span>{{ with .Params.categories }}{{ delimit . " / " }}{{ else }}ENGINEERING{{ end }}</span><time datetime="{{ .Date.Format "2006-01-02" }}">{{ .Date.Format "2006.01.02" }}</time></div>
+    <h2><a href="{{ .RelPermalink }}">{{ .LinkTitle }}</a></h2>
+    <p class="ms-list-summary">{{ with .Description }}{{ . }}{{ else }}{{ .Summary | plainify | truncate 190 }}{{ end }}</p>
+    <div class="ms-list-card-footer"><span>{{ .ReadingTime }} min read · {{ .WordCount }} words</span><a href="{{ .RelPermalink }}">Read article <span>↗</span></a></div>
+  </div>
+  {{ with .Params.tags }}<div class="ms-card-tags">{{ range first 3 . }}<a href="{{ printf "tags/%s/" (. | urlize) | relURL }}">#{{ . }}</a>{{ end }}</div>{{ end }}
+</article>

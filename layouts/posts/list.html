@@ -1,0 +1,10 @@
+{{ define "main" }}
+<main class="ms-page ms-list-page">
+  <header class="ms-page-hero"><p class="ms-eyebrow">THE KNOWLEDGE LOG</p><h1>All Posts<span>.</span></h1><p>技术实践、源码分析与工程思考。持续记录，持续构建。</p><div class="ms-page-stats"><span>{{ len .Pages }} ARTICLES</span><span>JAVA · ARCHITECTURE · AI</span></div></header>
+  <div class="ms-list-toolbar"><span>RECENT NOTES</span><a href="{{ "index.xml" | relURL }}">RSS Feed ↗</a></div>
+  <div class="ms-list-stack">
+    {{ range .Paginator.Pages }}{{ partial "ms/post-card.html" . }}{{ else }}<div class="ms-empty-state"><h3>No posts yet.</h3><p>文章正在整理中，敬请期待。</p></div>{{ end }}
+  </div>
+  {{ template "_internal/pagination.html" . }}
+</main>
+{{ end }}

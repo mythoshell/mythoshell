@@ -1,0 +1,9 @@
+{{ define "main" }}
+<main class="ms-page ms-about-page">
+  <header class="ms-page-hero ms-about-hero"><p class="ms-eyebrow">BEHIND THE SHELL</p><h1>About Me<span>.</span></h1><p>Build. Explore. Share. 一个持续学习、实践与分享的开发者。</p></header>
+  <div class="ms-about-layout">
+    <article class="ms-about-content post-content">{{ .Content }}</article>
+    <aside class="ms-about-aside"><div class="ms-about-card"><img src="{{ "brand/mythoshell-mark.svg" | relURL }}" alt="mythoshell mark"/><h2>mythoshell</h2><p>A developer's home for ideas, technology and beyond.</p><div class="ms-about-tags"><span>JAVA</span><span>ARCHITECTURE</span><span>AI AGENT</span></div><a href="{{ "posts/" | relURL }}">Explore writing ↗</a></div></aside>
+  </div>
+</main>
+{{ end }}

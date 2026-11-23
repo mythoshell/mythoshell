@@ -4,7 +4,7 @@ date: 2026-11-21T09:00:00+08:00
 draft: true
 description: "博客开篇：记录技术实践，探索架构设计，分享工程经验。"
 summary: "欢迎来到 mythoshell。这里会持续记录 Java、架构、中间件与 AI Agent 的学习和实践。"
-categories: ["Engineering"]
+categories: ["Java & JVM"]
 tags: ["Blog", "Hugo", "PaperMod"]
 ShowToc: true
 ---

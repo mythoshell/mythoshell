@@ -1,0 +1,10 @@
+{{ define "main" }}
+<main class="ms-page ms-terms-page">
+  <header class="ms-page-hero"><p class="ms-eyebrow">KNOWLEDGE INDEX</p><h1>{{ .Title }}<span>.</span></h1><p>通过主题与关键词，发现相关的技术实践和知识记录。</p><div class="ms-page-stats"><span>{{ len .Data.Terms }} {{ upper .Data.Plural }}</span><span>{{ len site.RegularPages }} PUBLISHED PAGES</span></div></header>
+  <section class="ms-term-cloud">
+    {{ range .Data.Terms.Alphabetical }}
+      <a class="ms-term-card" href="{{ .Page.RelPermalink }}"><span class="ms-term-name">{{ .Page.LinkTitle }}</span><span class="ms-term-count">{{ .Count }} {{ if eq .Count 1 }}ARTICLE{{ else }}ARTICLES{{ end }}</span><span class="ms-term-arrow">↗</span></a>
+    {{ else }}<p class="ms-empty-state">还没有创建{{ .Data.Plural }}。</p>{{ end }}
+  </section>
+</main>
+{{ end }}
