@@ -88,7 +88,7 @@ params:
     Text: "Suggest Changes"
     appendFilePath: true
   technicalDomains:
-    - name: "Java & JVM"
+    - name: "Java"
       number: "01"
       icon: "{ }"
       description: "Java 基础、并发编程、JVM 原理与性能调优"
@@ -103,12 +103,12 @@ params:
       icon: "◈"
       description: "MySQL、Redis、Kafka、Nacos 与中间件"
 
-    - name: "AI & Agent"
+    - name: "AI Agent"
       number: "04"
       icon: "✳"
       description: "LLM、RAG、Agent 应用与 AI 工程化"
 
-    - name: "Programming Languages"
+    - name: "Languages"
       number: "05"
       icon: "</>"
       description: "Python、Go、Rust 及其他编程语言生态"

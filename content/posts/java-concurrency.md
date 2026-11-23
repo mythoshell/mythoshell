@@ -4,7 +4,7 @@ date: 2026-11-21
 draft: false
 description: "深入理解 Java 并发编程"
 categories:
-  - Java & JVM
+  - Java
 tags:
   - Java
   - Concurrency
