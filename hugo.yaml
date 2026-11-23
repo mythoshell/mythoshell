@@ -88,30 +88,40 @@ params:
     Text: "Suggest Changes"
     appendFilePath: true
   technicalDomains:
-    - name: "Java"
+    - name: "Fundamentals"
       number: "01"
+      icon: "▦"
+      description: "数据结构、算法、操作系统、计算机网络与计算机基础"
+
+    - name: "Java"
+      number: "02"
       icon: "{ }"
       description: "Java 基础、并发编程、JVM 原理与性能调优"
 
     - name: "Architecture"
-      number: "02"
+      number: "03"
       icon: "⌘"
       description: "微服务、分布式系统、架构设计与演进"
 
     - name: "Middleware"
-      number: "03"
+      number: "04"
       icon: "◈"
       description: "MySQL、Redis、Kafka、Nacos 与中间件"
 
     - name: "AI Agent"
-      number: "04"
+      number: "05"
       icon: "✳"
       description: "LLM、RAG、Agent 应用与 AI 工程化"
 
     - name: "Languages"
-      number: "05"
+      number: "06"
       icon: "</>"
       description: "Python、Go、Rust 及其他编程语言生态"
+
+    - name: "Practices"
+      number: "07"
+      icon: "◫"
+      description: "项目管理、研发流程、团队协作与项目复盘"
 
 menu:
   main:
